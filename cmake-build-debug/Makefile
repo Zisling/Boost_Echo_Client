@@ -123,6 +123,33 @@ Boost_Echo_Client/fast:
 	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/build
 .PHONY : Boost_Echo_Client/fast
 
+src/Books.o: src/Books.cpp.o
+
+.PHONY : src/Books.o
+
+# target to build an object file
+src/Books.cpp.o:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o
+.PHONY : src/Books.cpp.o
+
+src/Books.i: src/Books.cpp.i
+
+.PHONY : src/Books.i
+
+# target to preprocess a source file
+src/Books.cpp.i:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.i
+.PHONY : src/Books.cpp.i
+
+src/Books.s: src/Books.cpp.s
+
+.PHONY : src/Books.s
+
+# target to generate assembly for a file
+src/Books.cpp.s:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s
+.PHONY : src/Books.cpp.s
+
 src/connectionHandler.o: src/connectionHandler.cpp.o
 
 .PHONY : src/connectionHandler.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Boost_Echo_Client"
 	@echo "... edit_cache"
+	@echo "... src/Books.o"
+	@echo "... src/Books.i"
+	@echo "... src/Books.s"
 	@echo "... src/connectionHandler.o"
 	@echo "... src/connectionHandler.i"
 	@echo "... src/connectionHandler.s"

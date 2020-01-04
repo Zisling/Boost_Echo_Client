@@ -90,10 +90,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include/Books.h">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include/connectionHandler.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/makefile">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
+		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/connectionHandler.cpp">

@@ -1,14 +1,25 @@
 #include <stdlib.h>
 #include <connectionHandler.h>
+#include <include/Books.h>
 
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
 */
 int main (int argc, char *argv[]) {
+    std::mutex mutex;
+    Books books(mutex);
+
+
+
     if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
+
         return -1;
     }
+    std::cout <<argv[2] << std::endl;
+    std::cout <<argv[1] << std::endl;
+    std::cout <<argv[0] << std::endl;
+
     std::string host = argv[1];
     short port = atoi(argv[2]);
     

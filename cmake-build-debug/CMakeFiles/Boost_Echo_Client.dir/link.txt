@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o  -o Boost_Echo_Client 
+/usr/bin/c++  -g   CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o  -o Boost_Echo_Client -lpthread 
