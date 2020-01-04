@@ -1,8 +1,8 @@
 CFLAGS:=-c -Wall -Weffc++ -g -std=c++11 -Iinclude
 LDFLAGS:=-lboost_system
-
+export CXXFLAGS=-pthread
 all: EchoClient
-	g++ -o bin/echoExample bin/connectionHandler.o bin/echoClient.o $(LDFLAGS) 
+	g++ -o bin/echoExample bin/connectionHandler.o bin/echoClient.o $(LDFLAGS) $(CXXFLAGS)
 
 EchoClient: bin/connectionHandler.o bin/echoClient.o
 	

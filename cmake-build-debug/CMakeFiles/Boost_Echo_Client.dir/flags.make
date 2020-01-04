@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/zisling/IdeaProjects/Assignment3/Boost_Echo_Client/. -I/home/zisling/IdeaProjects/Assignment3/Boost_Echo_Client/bin -I/home/zisling/IdeaProjects/Assignment3/Boost_Echo_Client/include -I/home/zisling/IdeaProjects/Assignment3/Boost_Echo_Client/src 
+CXX_INCLUDES = -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/. -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/bin -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src 
 

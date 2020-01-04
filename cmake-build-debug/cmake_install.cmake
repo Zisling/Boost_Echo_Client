@@ -1,4 +1,4 @@
-# Install script for directory: /home/zisling/IdeaProjects/Assignment3/Boost_Echo_Client
+# Install script for directory: /home/zisling/CLionProjects/ass3/Boost_Echo_Client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zisling/IdeaProjects/Assignment3/Boost_Echo_Client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
