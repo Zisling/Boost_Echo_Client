@@ -13,6 +13,8 @@
 class UserIO {
 private:
     Books library;
+    std::map<std::string,int> subscriptionIDMap;
+    std::string userName_;
 
     void join(std::string genre);
     void exitgenre(std::string genre);
@@ -23,11 +25,10 @@ private:
     void logout();
 
 public:
-    UserIO(const Books &library);
 
     void run(ConnectionHandler& connectionHandler);
 
-    UserIO(Books& library);
+    UserIO(const Books& library,std::string& userName);
 
     //login: in echoclient
     //join-genre

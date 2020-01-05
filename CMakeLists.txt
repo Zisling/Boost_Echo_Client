@@ -21,6 +21,7 @@ add_executable(Boost_Echo_Client
         include/connectionHandler.h
         src/connectionHandler.cpp
         src/echoClient.cpp
-        makefile src/Books.cpp include/Books.h)
+         src/Books.cpp include/Books.h
+        src/UserIO.cpp include/UserIO.h)
 target_link_libraries(Boost_Echo_Client ${Boost_LIBRARIES})
 target_link_libraries (Boost_Echo_Client ${CMAKE_THREAD_LIBS_INIT})

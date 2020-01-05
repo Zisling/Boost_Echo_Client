@@ -1,11 +1,13 @@
 //
-// Created by nirohan@wincs.cs.bgu.ac.il on 05/01/2020.
-//
 
 #include "UserIO.h"
 
-UserIO::UserIO(const Books &library) : library(library) {}
+#include <utility>
 
+
+UserIO::UserIO(const Books &library, std::string  &userName) : library(library),subscriptionIDMap(),userName_(std::move(userName)) {}
+
+//
 void UserIO::run(ConnectionHandler& connectionHandler) {
 
     bool disconnected = false;
@@ -21,18 +23,66 @@ void UserIO::run(ConnectionHandler& connectionHandler) {
         //Join frame
         if (line.find("join", 0)!=std::string::npos)
         {
+            //Extracting genre from the given string.
             std::string genre=line.substr(4);
-            std::string frame="SUBSCRIBE\ndestination:/"+genre+"\nid:"+counterIDsub+"\n\n\0";
+            //Framing subscribe frame
+            std::string frame="SUBSCRIBE\ndestination:/"+genre+"\nid:"+std::to_string(counterIDsub)+"\n\n\0";
+
+            subscriptionIDMap[genre]=counterIDsub;
             counterIDsub++;
+
             std::cout<<frame<<std::endl;
-            connectionHandler.sendFrameAscii(frame,'\0')
+
+            //Sending frame
+            connectionHandler.sendFrameAscii(frame,'\0');
 
         }
         //Exit frame
         else if(line.find("exit",0)!=std::string::npos)
         {
+            //Extracting genre from the given string.
+            std::string genre=line.substr(4);
+            std::cout<<genre<<std::endl;
+
+
+            //Framing unsubscribe frame
+            std::string frame="UNSUBSCRIBE\nid:"+std::to_string(subscriptionIDMap[genre])+"\n\n\0";
+
+            std::cout<<frame<<std::endl;
+
+            //Sending frame
+            connectionHandler.sendFrameAscii(frame,'\0');
 
         }
+
+        //Add book frame
+        else if(line.find("add",0)!=std::string::npos)
+        {
+            //Extracting genre from the given string.
+            std::string withoutAdd=line.substr(3);
+            if(withoutAdd.find(' ',0)!=std::string::npos)
+            {
+
+                std::string genre=withoutAdd.substr(0,withoutAdd.find(' ',0));
+                std::string bookname=withoutAdd.substr(withoutAdd.find(' ',0)+1);
+
+                library.addBook(genre,bookname,userName_);
+
+                std::cout<<genre<<std::endl;
+                std::cout<<bookname<<std::endl;
+
+                //Framing Send Frame
+                std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" has added the book"+bookname+"\n\0";
+                //Sending frame
+                connectionHandler.sendFrameAscii(frame,'\0');
+
+            } else
+            {
+                std::cout<<"Add didn't succeed,Frame is corrupted."<<std::endl;
+            }
+        }
+
+
             int len = line.length();
         if (!connectionHandler.sendLine(line)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
@@ -40,7 +90,9 @@ void UserIO::run(ConnectionHandler& connectionHandler) {
         }
     }
 }
+
 void UserIO::join(std::string genre) {
+
 
 }
 

@@ -17,11 +17,12 @@ Books::~Books() {
 }
 
 
-void Books::addBook(const std::string& genre, const std::string& book) {
+void Books::addBook(const std::string& genre, const std::string& book,const std::string& owner) {
     std::lock_guard<std::mutex> lock(_mutex);
     if (mapLibrary_[genre] == nullptr){
         mapLibrary_[genre]= new vector<string>();;
     }
+    mapBookLender_[book]=owner;
     mapLibrary_[genre]->emplace_back(book);
 }
 

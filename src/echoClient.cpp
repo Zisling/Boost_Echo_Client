@@ -23,14 +23,30 @@ int main (int argc, char *argv[]) {
     std::cout <<argv[1] << std::endl;
     std::cout <<argv[0] << std::endl;
 
-    std::string host = argv[1];
-    short port = atoi(argv[2]);
-    
+    std::string HostnPort;
+    std::cin>>HostnPort;
+
+    std::string username;
+    std::cin>>username;
+
+    std::string password;
+    std::cin>>password;
+
+
+    std::string host = HostnPort.substr(0,HostnPort.find(':'));
+    std::string portStr=HostnPort.substr(HostnPort.find(':')+1);
+
+    short port = atoi(portStr.c_str());
+
+
+
+
     ConnectionHandler connectionHandler(host, port);
     if (!connectionHandler.connect()) {
         std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         return 1;
     }
+
 
 	//TODO add a connect action
 

@@ -150,6 +150,33 @@ src/Books.cpp.s:
 	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s
 .PHONY : src/Books.cpp.s
 
+src/UserIO.o: src/UserIO.cpp.o
+
+.PHONY : src/UserIO.o
+
+# target to build an object file
+src/UserIO.cpp.o:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o
+.PHONY : src/UserIO.cpp.o
+
+src/UserIO.i: src/UserIO.cpp.i
+
+.PHONY : src/UserIO.i
+
+# target to preprocess a source file
+src/UserIO.cpp.i:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.i
+.PHONY : src/UserIO.cpp.i
+
+src/UserIO.s: src/UserIO.cpp.s
+
+.PHONY : src/UserIO.s
+
+# target to generate assembly for a file
+src/UserIO.cpp.s:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.s
+.PHONY : src/UserIO.cpp.s
+
 src/connectionHandler.o: src/connectionHandler.cpp.o
 
 .PHONY : src/connectionHandler.o
@@ -216,6 +243,9 @@ help:
 	@echo "... src/Books.o"
 	@echo "... src/Books.i"
 	@echo "... src/Books.s"
+	@echo "... src/UserIO.o"
+	@echo "... src/UserIO.i"
+	@echo "... src/UserIO.s"
 	@echo "... src/connectionHandler.o"
 	@echo "... src/connectionHandler.i"
 	@echo "... src/connectionHandler.s"

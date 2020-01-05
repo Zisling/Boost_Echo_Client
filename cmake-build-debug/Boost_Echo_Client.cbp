@@ -95,13 +95,16 @@
 		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/include/Books.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
+		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/include/UserIO.h">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
 		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/include/connectionHandler.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/makefile">
+		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/src/Books.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/src/Books.cpp">
+		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/src/UserIO.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/src/connectionHandler.cpp">
