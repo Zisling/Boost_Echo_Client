@@ -109,6 +109,9 @@ Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/build.make
+Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_system.so
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Boost_Echo_Client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Boost_Echo_Client.dir/link.txt --verbose=$(VERBOSE)

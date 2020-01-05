@@ -11,7 +11,7 @@ int main (int argc, char *argv[]) {
     Books books(mutex);
 
     std::string str("HEllo");
-    std::cout<<str.find("join",0);
+    std::cout<<(str.find("join",0)==std::string::npos)<<std::endl;
 
 
     if (argc < 3) {

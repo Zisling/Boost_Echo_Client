@@ -1,4 +1,5 @@
 /users/studs/bsc/2020/nirohan/workspace/clion-2019.2.5/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client
+-- Found Boost: /usr/include (found suitable version "1.65.1", minimum required is "1.65.1") found components:  filesystem regex system 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/cmake-build-debug
