@@ -4,6 +4,14 @@
 CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o: ../include/Books.h
 CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o: ../src/Books.cpp
 
+CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o: ../include/SocketIO.h
+CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o: ../src/SocketIO.cpp
+
+CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o: ../include/Books.h
+CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o: ../include/UserIO.h
+CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o: ../include/connectionHandler.h
+CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o: ../src/UserIO.cpp
+
 CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o: ../include/connectionHandler.h
 CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o: ../src/connectionHandler.cpp
 

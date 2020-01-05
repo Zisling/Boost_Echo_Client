@@ -5,10 +5,13 @@
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
 */
+
 int main (int argc, char *argv[]) {
     std::mutex mutex;
     Books books(mutex);
 
+    std::string str("HEllo");
+    std::cout<<str.find("join",0);
 
 
     if (argc < 3) {
@@ -28,7 +31,9 @@ int main (int argc, char *argv[]) {
         std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         return 1;
     }
-	
+
+	//TODO add a connect action
+
 	//From here we will see the rest of the ehco client implementation:
     while (1) {
         const short bufsize = 1024;

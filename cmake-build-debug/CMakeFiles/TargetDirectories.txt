@@ -1,3 +1,3 @@
-/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir
-/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir
+/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/edit_cache.dir

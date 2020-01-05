@@ -1,4 +1,4 @@
-/home/zisling/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.5662.56/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/zisling/CLionProjects/ass3/Boost_Echo_Client
+/users/studs/bsc/2020/nirohan/workspace/clion-2019.2.5/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug
+-- Build files have been written to: /users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/cmake-build-debug
