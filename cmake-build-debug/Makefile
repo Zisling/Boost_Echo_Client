@@ -150,6 +150,33 @@ src/Books.cpp.s:
 	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s
 .PHONY : src/Books.cpp.s
 
+src/SocketIO.o: src/SocketIO.cpp.o
+
+.PHONY : src/SocketIO.o
+
+# target to build an object file
+src/SocketIO.cpp.o:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o
+.PHONY : src/SocketIO.cpp.o
+
+src/SocketIO.i: src/SocketIO.cpp.i
+
+.PHONY : src/SocketIO.i
+
+# target to preprocess a source file
+src/SocketIO.cpp.i:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.i
+.PHONY : src/SocketIO.cpp.i
+
+src/SocketIO.s: src/SocketIO.cpp.s
+
+.PHONY : src/SocketIO.s
+
+# target to generate assembly for a file
+src/SocketIO.cpp.s:
+	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.s
+.PHONY : src/SocketIO.cpp.s
+
 src/UserIO.o: src/UserIO.cpp.o
 
 .PHONY : src/UserIO.o
@@ -243,6 +270,9 @@ help:
 	@echo "... src/Books.o"
 	@echo "... src/Books.i"
 	@echo "... src/Books.s"
+	@echo "... src/SocketIO.o"
+	@echo "... src/SocketIO.i"
+	@echo "... src/SocketIO.s"
 	@echo "... src/UserIO.o"
 	@echo "... src/UserIO.i"
 	@echo "... src/UserIO.s"

@@ -10,25 +10,24 @@
 #include "Books.h"
 #include "connectionHandler.h"
 
+#include <boost/atomic.hpp>
+
 class UserIO {
 private:
     Books library;
     std::map<std::string,int> subscriptionIDMap;
     std::string userName_;
     ConnectionHandler& connectionHandler;
-    void join(std::string genre);
-    void exitgenre(std::string genre);
-    void addbook(std::string genre,std::string bookname);
-    void borrowbook(std::string genre,std::string bookname);
-    std::string returnbook(std::string genre,std::string bookname);
-    void status(std::string genre);
-    void logout();
-
+    static boost::atomic<bool> disconnected_;
 public:
 
     void run();
 
     UserIO(const Books& library,std::string& userName,ConnectionHandler& connectionHandler);
+
+    static bool isDisconnected();
+
+    static void setDisconnected(bool disconnected);
 
     //login: in echoclient
     //join-genre

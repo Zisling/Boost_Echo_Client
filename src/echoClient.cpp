@@ -3,19 +3,24 @@
 #include <include/Books.h>
 #include <include/UserIO.h>
 #include <thread>
+#include "SocketIO.h"
 
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
 */
+
 
 int main (int argc, char *argv[]) {
     std::mutex mutex;
     Books books(mutex);
 
     std::string str("HEllo");
+    std::cout <<str.rfind('E') +1<< std::endl;
+    std::cout<<str.at(str.rfind('E') +1)<<std::endl;
+
     std::cout<<(str.find("join",0)==std::string::npos)<<std::endl;
 
-    ConnectionHandler *connectionHandler;
+    ConnectionHandler *connectionHandler = nullptr;
     bool connceted = false;
     std::string username;
     std::string password;
@@ -53,10 +58,11 @@ int main (int argc, char *argv[]) {
                 if (answer.find("version:1.2")){
                     std::cout<<"Connected and running"<<std::endl;
                     UserIO userIo(books,username,*connectionHandler);
-                    std::cin.clear();
-                    std::thread th1(&UserIO::run, &userIo);
-                    th1.join();
-
+                    SocketIO socketIo(username,*connectionHandler,books);
+                    std::thread userIoThread(&UserIO::run, &userIo);
+                    std::thread socketIoThread(&SocketIO::run, &socketIo);
+                    userIoThread.join();
+                    socketIoThread.join();
 
                 } else{
                     std::cout<<"version not compatible"<<std::endl;
@@ -71,7 +77,7 @@ int main (int argc, char *argv[]) {
         }
     }
 
-
+    delete connectionHandler;
 
 
 

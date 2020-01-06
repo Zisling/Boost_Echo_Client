@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o"
+  "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/SocketIO.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o"
   "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/UserIO.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o"
   "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/connectionHandler.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o"
   "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/echoClient.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"

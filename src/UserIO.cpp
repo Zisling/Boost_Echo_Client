@@ -5,18 +5,18 @@
 #include <utility>
 
 
-UserIO::UserIO(const Books &library, std::string  &userName,ConnectionHandler& connectionHandler) : library(library),subscriptionIDMap(),userName_(std::move(userName)),connectionHandler(connectionHandler) {}
+UserIO::UserIO(const Books &library, std::string  &userName,ConnectionHandler& connectionHandler) :
+library(library),subscriptionIDMap(),userName_(std::move(userName)),connectionHandler(connectionHandler) {}
 
 //
 void UserIO::run() {
 
-    bool disconnected = false;
     int counterIDsub=0;
 
 
 
 
-    while (!disconnected) {
+    while (!isDisconnected()) {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
@@ -148,7 +148,7 @@ void UserIO::run() {
                 std::string frame="DISCONNECT\nreceipt:42\n\n\0";
                 //Sending frame
             connectionHandler.sendFrameAscii(frame,'\0');
-            disconnected=true;
+//            disconnected_=true;
         } else if(!line.empty())
         {
             std::cout<<"Command is Corrupted or not supported."<<std::endl;
@@ -160,33 +160,12 @@ void UserIO::run() {
     }
 }
 
-void UserIO::join(std::string genre) {
 
 
+void UserIO::setDisconnected(bool disconnected) {
+    disconnected_.compare_exchange_strong(disconnected_, disconnected)
 }
 
-void UserIO::exitgenre(std::string genre) {
-
+bool UserIO::isDisconnected() {
+    return false;
 }
-
-void UserIO::addbook(std::string genre, std::string bookname) {
-
-}
-
-void UserIO::borrowbook(std::string genre, std::string bookname) {
-
-}
-
-std::string UserIO::returnbook(std::string genre, std::string bookname) {
-    return "";
-}
-
-void UserIO::status(std::string genre) {
-
-}
-
-void UserIO::logout() {
-
-}
-
-

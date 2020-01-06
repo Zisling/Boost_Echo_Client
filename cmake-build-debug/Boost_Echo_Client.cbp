@@ -99,6 +99,9 @@
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include/Books.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
+		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include/SocketIO.h">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include/UserIO.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
@@ -106,6 +109,9 @@
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
+		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/SocketIO.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/UserIO.cpp">
