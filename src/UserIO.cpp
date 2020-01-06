@@ -81,9 +81,29 @@ void UserIO::run(ConnectionHandler& connectionHandler) {
                 std::cout<<"Add didn't succeed,Frame is corrupted."<<std::endl;
             }
         }
+        else if(line.find("borrow",0)!=std::string::npos){
+
+            std::string withoutBorrow=line.substr(6);
+            if(withoutBorrow.find(' ',0)!=std::string::npos) {
+
+                std::string genre = withoutBorrow.substr(0, withoutBorrow.find(' ', 0));
+                std::string bookname = withoutBorrow.substr(withoutBorrow.find(' ', 0) + 1);
+                //Framing Send Frame
+                std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" wish to borrow"+bookname+"\n\0";
+                //Sending frame
+                connectionHandler.sendFrameAscii(frame,'\0');
+
+            } else
+            {
+                std::cout<<"Borrow didn't succeed,Frame is corrupted."<<std::endl;
+
+            }
+        }
+        else if(line.find(""))
 
 
-            int len = line.length();
+
+                int len = line.length();
         if (!connectionHandler.sendLine(line)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             disconnected = true;

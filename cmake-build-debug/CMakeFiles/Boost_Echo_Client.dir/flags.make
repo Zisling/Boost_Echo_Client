@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/. -I/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/bin -I/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/include -I/users/studs/bsc/2020/nirohan/CLionProjects/Boost_Echo_Client/src 
+CXX_INCLUDES = -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/. -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/bin -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/include -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src 
 
