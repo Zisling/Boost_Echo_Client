@@ -14,6 +14,8 @@ void UserIO::run(ConnectionHandler& connectionHandler) {
     int counterIDsub=0;
 
 
+
+
     while (!disconnected) {
         const short bufsize = 1024;
         char buf[bufsize];
@@ -78,7 +80,7 @@ void UserIO::run(ConnectionHandler& connectionHandler) {
 
             } else
             {
-                std::cout<<"Add didn't succeed,Frame is corrupted."<<std::endl;
+                std::cout<<"Add didn't succeed,Command is corrupted."<<std::endl;
             }
         }
         else if(line.find("borrow",0)!=std::string::npos){
@@ -95,19 +97,64 @@ void UserIO::run(ConnectionHandler& connectionHandler) {
 
             } else
             {
-                std::cout<<"Borrow didn't succeed,Frame is corrupted."<<std::endl;
+                std::cout<<"Borrow didn't succeed,Command is corrupted."<<std::endl;
+            }
+
+        }
+        else if(line.find("return")!=std::string::npos) {
+            std::string withoutReturn = line.substr(6);
+            if (withoutReturn.find(' ', 0) != std::string::npos) {
+
+                std::string genre = withoutReturn.substr(0, withoutReturn.find(' ', 0));
+                std::string bookname = withoutReturn.substr(withoutReturn.find(' ', 0) + 1);
+
+                std::string lender=library.findLender(bookname);
+
+                //Framing Send Frame
+                std::string frame="SEND\ndestination:"+genre+"\nReturning "+bookname+" to"+lender+"\n\0";
+                library.removeBook(genre,bookname);
+                //Sending frame
+                connectionHandler.sendFrameAscii(frame,'\0');
+
+            }
+            else {
+                std::cout << "Return didn't succeed,Command is corrupted." << std::endl;
 
             }
         }
-        else if(line.find(""))
+        else if(line.find("status")!=std::string::npos)
+        {
+            std::string withoutStatus=line.substr(6);
+            if (withoutStatus.find(' ', 0) != std::string::npos) {
 
+                std::string genre = withoutStatus.substr(0, withoutStatus.find(' ', 0));
 
+                //Framing Send Frame
+                std::string frame="SEND\ndestination:"+genre+"\n\nbook status"+"\n\0";
 
-                int len = line.length();
-        if (!connectionHandler.sendLine(line)) {
-            std::cout << "Disconnected. Exiting...\n" << std::endl;
-            disconnected = true;
+                //Sending frame
+                connectionHandler.sendFrameAscii(frame,'\0');
+
+        } else{
+                std::cout << "Status didn't succeed,Command is corrupted." << std::endl;\
+            }
         }
+
+        else if(line.find("logout")!=std::string::npos)
+        {
+                //Framing Disconnect frame
+                std::string frame="DISCONNECT\nreceipt:42\n\n\0";
+                //Sending frame
+            connectionHandler.sendFrameAscii(frame,'\0');
+            disconnected=true;
+        } else
+        {
+            std::cout<<"Command is Corrupted or not supported."<<std::endl;
+            std::cout<<"Re-enter your command."<<std::endl;
+
+        }
+
+
     }
 }
 

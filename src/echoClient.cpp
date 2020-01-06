@@ -13,71 +13,74 @@ int main (int argc, char *argv[]) {
     std::string str("HEllo");
     std::cout<<(str.find("join",0)==std::string::npos)<<std::endl;
 
-
-    if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
-
-        return -1;
-    }
-    std::cout <<argv[2] << std::endl;
-    std::cout <<argv[1] << std::endl;
-    std::cout <<argv[0] << std::endl;
-
-    std::string HostnPort;
-    std::cin>>HostnPort;
-
+    ConnectionHandler *connectionHandler;
+    bool connceted = false;
     std::string username;
-    std::cin>>username;
-
     std::string password;
-    std::cin>>password;
+    std::string HostnPort;
+
+    while (!connceted){
+
+        std::cin>>HostnPort;
+        std::cin>>username;
+        std::cin>>password;
 
 
     std::string host = HostnPort.substr(0,HostnPort.find(':'));
-    std::string portStr=HostnPort.substr(HostnPort.find(':')+1);
+    std::string portStr= HostnPort.substr(HostnPort.find(':')+1);
 
     short port = atoi(portStr.c_str());
 
+    connectionHandler= new ConnectionHandler(host, port);
+
+        if (!connectionHandler->connect()) {
+            std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
+        } else{connceted=true;
+        std::string connectedFrame="CONNECT\naccept-version:1.2\nhost:"+HostnPort+"\nlogin:"+username+"\npasscode:"+password+"\n\n\0";
+        connectionHandler->sendFrameAscii(connectedFrame,'\0');
+            std::string answer;
+            // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
+            // We could also use: connectionHandler.getline(answer) and then get the answer without the newline char at the end
+            if (!connectionHandler->getFrameAscii(answer,'\0')) {
+                std::cout << "Disconnected. Exiting...\n" << std::endl;
+                break;
+            }
+            answer.resize(answer.length()-1);
+            if (answer.find("CONNECTED")!=std::string::npos){
 
 
-
-    ConnectionHandler connectionHandler(host, port);
-    if (!connectionHandler.connect()) {
-        std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
-        return 1;
+            } else{
+                std::cout<<"didn't get CONNECTED in frame"<<std::endl;
+            }
+        }
     }
 
 
-	//TODO add a connect action
+
+
 
 	//From here we will see the rest of the ehco client implementation:
     while (1) {
-        const short bufsize = 1024;
-        char buf[bufsize];
-        std::cin.getline(buf, bufsize);
-		std::string line(buf);
-		int len=line.length();
-        if (!connectionHandler.sendLine(line)) {
-            std::cout << "Disconnected. Exiting...\n" << std::endl;
-            break;
-        }
+//        const short bufsize = 1024;
+//        char buf[bufsize];
+//        std::cin.getline(buf, bufsize);
+//		std::string line(buf);
+//		int len=line.length();
+//        if (!connectionHandler->sendLine(line)) {
+//            std::cout << "Disconnected. Exiting...\n" << std::endl;
+//            break;
+//        }
 		// connectionHandler.sendLine(line) appends '\n' to the message. Therefor we send len+1 bytes.
-        std::cout << "Sent " << len+1 << " bytes to server" << std::endl;
+//        std::cout << "Sent " << len+1 << " bytes to server" << std::endl;
 
- 
+
         // We can use one of three options to read data from the server:
         // 1. Read a fixed number of characters
         // 2. Read a line (up to the newline character using the getline() buffered reader
         // 3. Read up to the null character
-        std::string answer;
-        // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
-        // We could also use: connectionHandler.getline(answer) and then get the answer without the newline char at the end
-        if (!connectionHandler.getLine(answer)) {
-            std::cout << "Disconnected. Exiting...\n" << std::endl;
-            break;
-        }
-        
-		len=answer.length();
+
+
+		/*len=answer.length();
 		// A C string must end with a 0 char delimiter.  When we filled the answer buffer from the socket
 		// we filled up to the \n char - we must make sure now that a 0 char is also present. So we truncate last character.
         answer.resize(len-1);
@@ -85,7 +88,7 @@ int main (int argc, char *argv[]) {
         if (answer == "bye") {
             std::cout << "Exiting...\n" << std::endl;
             break;
-        }
+        }*/
     }
     return 0;
 }
