@@ -5,10 +5,10 @@
 #include <utility>
 
 
-UserIO::UserIO(const Books &library, std::string  &userName) : library(library),subscriptionIDMap(),userName_(std::move(userName)) {}
+UserIO::UserIO(const Books &library, std::string  &userName,ConnectionHandler& connectionHandler) : library(library),subscriptionIDMap(),userName_(std::move(userName)),connectionHandler(connectionHandler) {}
 
 //
-void UserIO::run(ConnectionHandler& connectionHandler) {
+void UserIO::run() {
 
     bool disconnected = false;
     int counterIDsub=0;

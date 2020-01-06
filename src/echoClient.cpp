@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <connectionHandler.h>
 #include <include/Books.h>
+#include <include/UserIO.h>
+#include <thread>
 
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
@@ -37,6 +39,7 @@ int main (int argc, char *argv[]) {
             std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         } else{connceted=true;
         std::string connectedFrame="CONNECT\naccept-version:1.2\nhost:"+HostnPort+"\nlogin:"+username+"\npasscode:"+password+"\n\n\0";
+        std::cout<<connectedFrame<<std::endl;
         connectionHandler->sendFrameAscii(connectedFrame,'\0');
             std::string answer;
             // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
@@ -47,9 +50,21 @@ int main (int argc, char *argv[]) {
             }
             answer.resize(answer.length()-1);
             if (answer.find("CONNECTED")!=std::string::npos){
+                if (answer.find("version:1.2")){
+                    std::cout<<"Connected and running"<<std::endl;
+                    UserIO userIo(books,username,*connectionHandler);
+                    std::cin.clear();
+                    std::thread th1(&UserIO::run, &userIo);
 
 
-            } else{
+                } else{
+                    std::cout<<"version not compatible"<<std::endl;
+                }
+
+            } else if(answer.find("ERROR")){
+                std::cout<<answer<<std::endl;
+            }
+            else{
                 std::cout<<"didn't get CONNECTED in frame"<<std::endl;
             }
         }
@@ -60,7 +75,7 @@ int main (int argc, char *argv[]) {
 
 
 	//From here we will see the rest of the ehco client implementation:
-    while (1) {
+//    while (1) {
 //        const short bufsize = 1024;
 //        char buf[bufsize];
 //        std::cin.getline(buf, bufsize);
@@ -89,6 +104,6 @@ int main (int argc, char *argv[]) {
             std::cout << "Exiting...\n" << std::endl;
             break;
         }*/
-    }
+//    }
     return 0;
 }

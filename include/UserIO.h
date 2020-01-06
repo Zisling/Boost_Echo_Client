@@ -15,7 +15,7 @@ private:
     Books library;
     std::map<std::string,int> subscriptionIDMap;
     std::string userName_;
-
+    ConnectionHandler& connectionHandler;
     void join(std::string genre);
     void exitgenre(std::string genre);
     void addbook(std::string genre,std::string bookname);
@@ -26,9 +26,9 @@ private:
 
 public:
 
-    void run(ConnectionHandler& connectionHandler);
+    void run();
 
-    UserIO(const Books& library,std::string& userName);
+    UserIO(const Books& library,std::string& userName,ConnectionHandler& connectionHandler);
 
     //login: in echoclient
     //join-genre
