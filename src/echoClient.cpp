@@ -55,6 +55,7 @@ int main (int argc, char *argv[]) {
                     UserIO userIo(books,username,*connectionHandler);
                     std::cin.clear();
                     std::thread th1(&UserIO::run, &userIo);
+                    th1.join();
 
 
                 } else{

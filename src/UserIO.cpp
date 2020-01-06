@@ -26,9 +26,9 @@ void UserIO::run() {
         if (line.find("join", 0)!=std::string::npos)
         {
             //Extracting genre from the given string.
-            std::string genre=line.substr(4);
+            std::string genre=line.substr(5);
             //Framing subscribe frame
-            std::string frame="SUBSCRIBE\ndestination:/"+genre+"\nid:"+std::to_string(counterIDsub)+"\n\n\0";
+            std::string frame="SUBSCRIBE\ndestination:"+genre+"\nid:"+std::to_string(counterIDsub)+"\n\n\0";
 
             subscriptionIDMap[genre]=counterIDsub;
             counterIDsub++;
@@ -61,12 +61,12 @@ void UserIO::run() {
         else if(line.find("add",0)!=std::string::npos)
         {
             //Extracting genre from the given string.
-            std::string withoutAdd=line.substr(3);
+            std::string withoutAdd=line.substr(4);
             if(withoutAdd.find(' ',0)!=std::string::npos)
             {
 
                 std::string genre=withoutAdd.substr(0,withoutAdd.find(' ',0));
-                std::string bookname=withoutAdd.substr(withoutAdd.find(' ',0)+1);
+                std::string bookname=withoutAdd.substr(withoutAdd.find(' ')+1);
 
                 library.addBook(genre,bookname,userName_);
 
@@ -74,7 +74,9 @@ void UserIO::run() {
                 std::cout<<bookname<<std::endl;
 
                 //Framing Send Frame
-                std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" has added the book"+bookname+"\n\0";
+                std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" has added the book "+bookname+"\n\0";
+                std::cout <<frame << std::endl;
+
                 //Sending frame
                 connectionHandler.sendFrameAscii(frame,'\0');
 
@@ -85,13 +87,13 @@ void UserIO::run() {
         }
         else if(line.find("borrow",0)!=std::string::npos){
 
-            std::string withoutBorrow=line.substr(6);
+            std::string withoutBorrow=line.substr(7);
             if(withoutBorrow.find(' ',0)!=std::string::npos) {
 
                 std::string genre = withoutBorrow.substr(0, withoutBorrow.find(' ', 0));
                 std::string bookname = withoutBorrow.substr(withoutBorrow.find(' ', 0) + 1);
                 //Framing Send Frame
-                std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" wish to borrow"+bookname+"\n\0";
+                std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" wish to borrow "+bookname+"\n\0";
                 //Sending frame
                 connectionHandler.sendFrameAscii(frame,'\0');
 
@@ -102,7 +104,7 @@ void UserIO::run() {
 
         }
         else if(line.find("return")!=std::string::npos) {
-            std::string withoutReturn = line.substr(6);
+            std::string withoutReturn = line.substr(7);
             if (withoutReturn.find(' ', 0) != std::string::npos) {
 
                 std::string genre = withoutReturn.substr(0, withoutReturn.find(' ', 0));
@@ -124,7 +126,7 @@ void UserIO::run() {
         }
         else if(line.find("status")!=std::string::npos)
         {
-            std::string withoutStatus=line.substr(6);
+            std::string withoutStatus=line.substr(7);
             if (withoutStatus.find(' ', 0) != std::string::npos) {
 
                 std::string genre = withoutStatus.substr(0, withoutStatus.find(' ', 0));
@@ -147,7 +149,7 @@ void UserIO::run() {
                 //Sending frame
             connectionHandler.sendFrameAscii(frame,'\0');
             disconnected=true;
-        } else
+        } else if(!line.empty())
         {
             std::cout<<"Command is Corrupted or not supported."<<std::endl;
             std::cout<<"Re-enter your command."<<std::endl;
@@ -176,7 +178,7 @@ void UserIO::borrowbook(std::string genre, std::string bookname) {
 }
 
 std::string UserIO::returnbook(std::string genre, std::string bookname) {
-    return std::__cxx11::string();
+    return "";
 }
 
 void UserIO::status(std::string genre) {

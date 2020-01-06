@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -g   -std=gnu++11
 
-CXX_DEFINES = 
+CXX_DEFINES = -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_REGEX_DYN_LINK
 
-CXX_INCLUDES = -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/. -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/bin -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/include -I/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src 
+CXX_INCLUDES = -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/. -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/bin -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/include -I/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src 
 
