@@ -12,7 +12,7 @@
 
 class Books {
 private:
-
+    std::string wishToBorrow_;
     std::map<std::string,std::vector<std::string>*> mapLibrary_;
     std::map<std::string ,std::string> mapBookLender_;
     std::mutex & _mutex;
@@ -23,6 +23,10 @@ public:
     void addBook(const std::string& genre,const std::string& book,const std::string& owner);
     bool findBook(const std::string& genre,const std::string& book);
     std::string removeBook(const std::string& genre,const std::string& book);
+
+    const std::string &getWishToBorrow() const;
+
+    void setWishToBorrow(const std::string &wishToBorrow);
 
     virtual ~Books();
 };

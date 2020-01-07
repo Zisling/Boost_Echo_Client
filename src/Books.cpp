@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-Books::Books(mutex &mutex): mapLibrary_(), _mutex(mutex) {
+Books::Books(mutex &mutex): mapLibrary_(), _mutex(mutex),wishToBorrow_() {
 }
 
 Books::~Books() {
@@ -19,6 +19,8 @@ Books::~Books() {
 
 void Books::addBook(const std::string& genre, const std::string& book,const std::string& owner) {
     std::lock_guard<std::mutex> lock(_mutex);
+    std::cout <<"toadd:" << genre<< std::endl;
+
     if (mapLibrary_[genre] == nullptr){
         mapLibrary_[genre]= new vector<string>();;
     }
@@ -27,6 +29,8 @@ void Books::addBook(const std::string& genre, const std::string& book,const std:
 }
 
 bool Books::findBook(const std::string& genre,const std::string& book) {
+    std::cout <<"tofind:"<<genre << std::endl;
+
     if (mapLibrary_[genre] != nullptr){
         for (const string& compare : *mapLibrary_[genre]) {
             if (compare==book){
@@ -55,3 +59,15 @@ string Books::removeBook(const std::string& genre,const std::string& book) {
 std::string Books::findLender(const std::string &book) {
     return mapBookLender_[book];
 }
+//todo see if there is a better way to make it more safe may !!!wchar!!!
+const string &Books::getWishToBorrow() const {
+    return wishToBorrow_;
+}
+
+void Books::setWishToBorrow(const string &wishToBorrow) {
+    std::lock_guard<std::mutex> lock(_mutex);
+    wishToBorrow_ = wishToBorrow;
+}
+
+
+

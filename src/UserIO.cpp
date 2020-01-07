@@ -22,7 +22,7 @@ void UserIO::run() {
 
 
 
-    while (connectionHandler.connect()&&*connected_) {
+    while (*connected_) {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
@@ -99,6 +99,7 @@ void UserIO::run() {
                 std::string genre = withoutBorrow.substr(0, withoutBorrow.find(' ', 0));
                 std::string bookname = withoutBorrow.substr(withoutBorrow.find(' ', 0) + 1);
                 //Framing Send Frame
+                library.setWishToBorrow(bookname);/// user set the book he wish to get
                 std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" wish to borrow "+bookname+"\n\0";
                 //Sending frame
                 connectionHandler.sendFrameAscii(frame,'\0');

@@ -25,11 +25,13 @@ int main (int argc, char *argv[]) {
 
     ConnectionHandler *connectionHandler = nullptr;
     boost::atomic_bool *connected=new boost::atomic_bool(false);
+
+
     std::string username;
     std::string password;
     std::string HostnPort;
 
-    while (!*connected){
+    while (!connected->load()){
 
         std::cin>>HostnPort;
         std::cin>>username;
