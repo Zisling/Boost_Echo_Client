@@ -15,19 +15,20 @@
 class UserIO {
 private:
     Books library;
+
     std::map<std::string,int> subscriptionIDMap;
     std::string userName_;
     ConnectionHandler& connectionHandler;
-    static boost::atomic<bool> disconnected_;
+    boost::atomic_bool *connected_;
 public:
-
     void run();
 
-    UserIO(const Books& library,std::string& userName,ConnectionHandler& connectionHandler);
+    UserIO(const Books &library, const std::string &userName, ConnectionHandler &connectionHandler,
+           boost::atomic_bool *connected);
 
-    static bool isDisconnected();
 
-    static void setDisconnected(bool disconnected);
+
+
 
     //login: in echoclient
     //join-genre

@@ -1,12 +1,18 @@
 //
 
-#include "UserIO.h"
-
+#include "include/UserIO.h"
 #include <utility>
 
 
-UserIO::UserIO(const Books &library, std::string  &userName,ConnectionHandler& connectionHandler) :
-library(library),subscriptionIDMap(),userName_(std::move(userName)),connectionHandler(connectionHandler) {}
+UserIO::UserIO(const Books &library, const std::string &userName,
+               ConnectionHandler &connectionHandler, boost::atomic_bool *connected) : library(library),
+                                                                                      subscriptionIDMap(
+                                                                                              ),
+                                                                                      userName_(userName),
+                                                                                      connectionHandler(
+                                                                                              connectionHandler),
+                                                                                      connected_(connected) {}
+
 
 //
 void UserIO::run() {
@@ -16,7 +22,7 @@ void UserIO::run() {
 
 
 
-    while (!isDisconnected()) {
+    while (connectionHandler.connect()&&*connected_) {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
@@ -162,10 +168,4 @@ void UserIO::run() {
 
 
 
-void UserIO::setDisconnected(bool disconnected) {
-    disconnected_.compare_exchange_strong(disconnected_, disconnected)
-}
 
-bool UserIO::isDisconnected() {
-    return false;
-}

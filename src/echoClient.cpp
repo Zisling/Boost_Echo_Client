@@ -2,8 +2,11 @@
 #include <connectionHandler.h>
 #include <include/Books.h>
 #include <include/UserIO.h>
+#include <include/SocketIO.h>
 #include <thread>
-#include "SocketIO.h"
+#include <boost/atomic.hpp>
+
+
 
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
@@ -15,18 +18,18 @@ int main (int argc, char *argv[]) {
     Books books(mutex);
 
     std::string str("HEllo");
-    std::cout <<str.rfind('E') +1<< std::endl;
-    std::cout<<str.at(str.rfind('E') +1)<<std::endl;
-
-    std::cout<<(str.find("join",0)==std::string::npos)<<std::endl;
+//    std::cout <<str.rfind('E') +1<< std::endl;
+//    std::cout<<str.at(str.rfind('E') +1)<<std::endl;
+//
+//    std::cout<<(str.find("join",0)==std::string::npos)<<std::endl;
 
     ConnectionHandler *connectionHandler = nullptr;
-    bool connceted = false;
+    boost::atomic_bool *connected=new boost::atomic_bool(false);
     std::string username;
     std::string password;
     std::string HostnPort;
 
-    while (!connceted){
+    while (!*connected){
 
         std::cin>>HostnPort;
         std::cin>>username;
@@ -42,7 +45,7 @@ int main (int argc, char *argv[]) {
 
         if (!connectionHandler->connect()) {
             std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
-        } else{connceted=true;
+        } else{ *connected=true;
         std::string connectedFrame="CONNECT\naccept-version:1.2\nhost:"+HostnPort+"\nlogin:"+username+"\npasscode:"+password+"\n\n\0";
         std::cout<<connectedFrame<<std::endl;
         connectionHandler->sendFrameAscii(connectedFrame,'\0');
@@ -57,8 +60,8 @@ int main (int argc, char *argv[]) {
             if (answer.find("CONNECTED")!=std::string::npos){
                 if (answer.find("version:1.2")){
                     std::cout<<"Connected and running"<<std::endl;
-                    UserIO userIo(books,username,*connectionHandler);
-                    SocketIO socketIo(username,*connectionHandler,books);
+                    UserIO userIo(books,username,*connectionHandler,connected);
+                    SocketIO socketIo(username,*connectionHandler,books,connected);
                     std::thread userIoThread(&UserIO::run, &userIo);
                     std::thread socketIoThread(&SocketIO::run, &socketIo);
                     userIoThread.join();

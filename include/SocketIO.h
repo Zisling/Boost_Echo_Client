@@ -8,10 +8,14 @@
 
 #include <string>
 #include "connectionHandler.h"
+#include <boost/atomic.hpp>
+
 
 class SocketIO {
 public:
-    SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, const Books &library);
+
+    SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, const Books &library,
+             boost::atomic_bool *connected);
 
     void run();
 
@@ -20,6 +24,8 @@ private:
     ConnectionHandler& connectionHandler;
     Books library;
     void MessageProcess(const std::string& message);
+    boost::atomic_bool *connected_;
+
 
 
 };
