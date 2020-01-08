@@ -4,11 +4,11 @@
 #include <utility>
 
 
-UserIO::UserIO(const Books &library, const std::string &userName,
+UserIO::UserIO(Books &library, std::string userName,
                ConnectionHandler &connectionHandler, boost::atomic_bool *connected) : library(library),
                                                                                       subscriptionIDMap(
                                                                                               ),
-                                                                                      userName_(userName),
+                                                                                      userName_(std::move(userName)),
                                                                                       connectionHandler(
                                                                                               connectionHandler),
                                                                                       connected_(connected) {}

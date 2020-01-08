@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/zisling/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.5662.56/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /users/studs/bsc/2020/hediz/workspace/CLion-2019.2.5/clion-2019.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/zisling/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.5662.56/bin/cmake/linux/bin/cmake -E remove -f
+RM = /users/studs/bsc/2020/hediz/workspace/CLion-2019.2.5/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zisling/CLionProjects/ass3/Boost_Echo_Client
+CMAKE_SOURCE_DIR = /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug
+CMAKE_BINARY_DIR = /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Boost_Echo_Client.dir/depend.make
@@ -59,68 +59,68 @@ include CMakeFiles/Boost_Echo_Client.dir/flags.make
 
 CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o: ../src/connectionHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o -c /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/connectionHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o -c /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/connectionHandler.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/connectionHandler.cpp > CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/connectionHandler.cpp > CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.i
 
 CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/connectionHandler.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/connectionHandler.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s
 
 CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o: ../src/echoClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o -c /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/echoClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o -c /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/echoClient.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/echoClient.cpp > CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/echoClient.cpp > CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i
 
 CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/echoClient.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/echoClient.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s
 
 CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o: ../src/Books.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o -c /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o -c /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/Books.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp > CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/Books.cpp > CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.i
 
 CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/Books.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.s
 
 CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o: ../src/UserIO.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o -c /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/UserIO.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o -c /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/UserIO.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/UserIO.cpp > CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/UserIO.cpp > CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.i
 
 CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/UserIO.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/UserIO.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.s
 
 CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o: ../src/SocketIO.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o -c /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/SocketIO.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o -c /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/SocketIO.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/SocketIO.cpp > CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/SocketIO.cpp > CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.i
 
 CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/SocketIO.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/SocketIO.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.s
 
 # Object files for target Boost_Echo_Client
 Boost_Echo_Client_OBJECTS = \
@@ -139,10 +139,11 @@ Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/build.make
-Boost_Echo_Client: /usr/lib64/libboost_filesystem.so.1.71.0
-Boost_Echo_Client: /usr/lib64/libboost_regex.so.1.71.0
+Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+Boost_Echo_Client: /usr/lib/x86_64-linux-gnu/libboost_system.so
 Boost_Echo_Client: CMakeFiles/Boost_Echo_Client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Boost_Echo_Client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Boost_Echo_Client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Boost_Echo_Client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -155,6 +156,6 @@ CMakeFiles/Boost_Echo_Client.dir/clean:
 .PHONY : CMakeFiles/Boost_Echo_Client.dir/clean
 
 CMakeFiles/Boost_Echo_Client.dir/depend:
-	cd /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zisling/CLionProjects/ass3/Boost_Echo_Client /home/zisling/CLionProjects/ass3/Boost_Echo_Client /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/DependInfo.cmake --color=$(COLOR)
+	cd /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Boost_Echo_Client.dir/depend
 

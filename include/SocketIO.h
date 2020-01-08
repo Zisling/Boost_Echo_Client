@@ -14,7 +14,7 @@
 class SocketIO {
 public:
 
-    SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, const Books &library,
+    SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, Books &library,
              boost::atomic_bool *connected);
 
     void run();
@@ -22,7 +22,7 @@ public:
 private:
     std::string userName_;
     ConnectionHandler& connectionHandler;
-    Books library;
+    Books &library;
     void MessageProcess(const std::string& message);
     boost::atomic_bool *connected_;
 

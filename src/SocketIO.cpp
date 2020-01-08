@@ -4,9 +4,9 @@
 
 #include <include/Books.h>
 #include <include/UserIO.h>
-#include "SocketIO.h"
+#include <include/SocketIO.h>
 
-SocketIO::SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, const Books &library,
+SocketIO::SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, Books &library,
                    boost::atomic_bool *connected) : userName_(userName), connectionHandler(connectionHandler),
                                                     library(library), connected_(connected) {}
 

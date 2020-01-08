@@ -1,5 +1,4 @@
-/home/zisling/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.5662.56/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/zisling/CLionProjects/ass3/Boost_Echo_Client
--- Found Boost: /usr/lib64/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.65.1") found components:  filesystem regex 
+/users/studs/bsc/2020/hediz/workspace/CLion-2019.2.5/clion-2019.2.5/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug
+-- Build files have been written to: /users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug
