@@ -26,7 +26,9 @@ void UserIO::run() {
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
         std::string line(buf);
-
+        if (!connected_->load()){
+            break;
+        }
         //Join frame
         if (line.find("join", 0)!=std::string::npos)
         {

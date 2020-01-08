@@ -4,6 +4,7 @@
 
 #include <include/Books.h>
 #include <include/UserIO.h>
+#include <boost/thread.hpp>
 #include <include/SocketIO.h>
 
 SocketIO::SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, Books &library,
