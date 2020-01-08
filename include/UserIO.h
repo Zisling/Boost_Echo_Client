@@ -16,7 +16,6 @@ class UserIO {
 private:
     Books &library;
 
-    std::map<std::string,int> subscriptionIDMap;
     std::string userName_;
     ConnectionHandler& connectionHandler;
     boost::atomic_bool *connected_;

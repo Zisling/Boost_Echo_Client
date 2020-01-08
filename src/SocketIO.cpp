@@ -25,6 +25,38 @@ void SocketIO::run() {
         if (answer.find("MESSAGE")!=std::string::npos){
             MessageProcess(answer);
         }
+        else if(answer.find("RECEIPT")!=std::string::npos){
+            std::cout<<"receipt\n"<<answer<<"\nend Frame"<<std::endl;
+            std::string res = "receipt-id:";
+            int pos = answer.find(res);
+            std::string id = answer.substr(pos+res.length(),answer.find('\n',pos)-pos-res.length());
+            std::string action = library.getReceipt(id);
+            if (action!="error receipt don't exist"){
+            if (action.find("DISCONNECT")!=std::string::npos){
+                connected_->store(false);
+                break;
+            } else if (action.find("Joined club ")!=std::string::npos){
+                int pos1 = action.find("club ")+5;
+                int end = action.find('\n');
+                std::string genre=action.substr(pos1,end-pos1);
+                int pos2=action.find_last_of(':')+1;
+                std::string idOfGen =action.substr(pos2);
+                std::cout<<idOfGen<<"!!!id of gen"<<std::endl;
+                library.addId(genre,idOfGen);
+                std::cout<<action.substr(0,action.find('\n'))<<std::endl;
+            } else if (action.find("Exited club ")!=std::string::npos){
+                int pos = action.find_last_of("club ")+5;
+                std::string genre = action.substr(pos);
+                library.removeId(genre);
+                std::cout<<action<<std::endl;
+            }
+            } else{
+                std::cout<<"error receipt don't exist"<<std::endl;
+            }
+        }else if (answer.find("ERROR")!=std::string::npos){
+            connected_->store(false);
+            std::cout<<answer<<std::endl;
+        }
 
     }
 }

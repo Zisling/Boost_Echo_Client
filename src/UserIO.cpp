@@ -6,8 +6,6 @@
 
 UserIO::UserIO(Books &library, std::string userName,
                ConnectionHandler &connectionHandler, boost::atomic_bool *connected) : library(library),
-                                                                                      subscriptionIDMap(
-                                                                                              ),
                                                                                       userName_(std::move(userName)),
                                                                                       connectionHandler(
                                                                                               connectionHandler),
@@ -18,11 +16,12 @@ UserIO::UserIO(Books &library, std::string userName,
 void UserIO::run() {
 
     int counterIDsub=0;
+    int counterIDReceipt=1;
 
 
 
 
-    while (*connected_) {
+    while (connected_->load()) {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
@@ -34,10 +33,11 @@ void UserIO::run() {
             //Extracting genre from the given string.
             std::string genre=line.substr(5);
             //Framing subscribe frame
-            std::string frame="SUBSCRIBE\ndestination:"+genre+"\nid:"+std::to_string(counterIDsub)+"\n\n\0";
+            library.addReceipt(counterIDReceipt, "Joined club "+genre+"\nIDsub:"+std::to_string(counterIDsub) );
+            std::string frame="SUBSCRIBE\ndestination:"+genre+"\nid:"+std::to_string(counterIDsub)+"\nreceipt:"+std::to_string(counterIDReceipt)+"\n\n\0";
 
-            subscriptionIDMap[genre]=counterIDsub;
             counterIDsub++;
+            counterIDReceipt++;
 
 
             //Sending frame
@@ -48,16 +48,23 @@ void UserIO::run() {
         else if(line.find("exit",0)!=std::string::npos)
         {
             //Extracting genre from the given string.
-            std::string genre=line.substr(4);
+            std::string genre=line.substr(5);
 
 
             //Framing unsubscribe frame
-            std::string frame="UNSUBSCRIBE\nid:"+std::to_string(subscriptionIDMap[genre])+"\n\n\0";
+            library.addReceipt(counterIDReceipt,"Exited club "+genre);
+            std::cout<<genre<<std::endl;
+            int id =library.getId(genre);
+            if (id!=-1){
+            std::string frame="UNSUBSCRIBE\nid:"+std::to_string(id)+"\nreceipt:"+std::to_string(counterIDReceipt)+"\n\n\0";
             std::cout<<frame<<std::endl;
+            counterIDReceipt++;
 
             //Sending frame
             connectionHandler.sendFrameAscii(frame,'\0');
-
+            } else{
+                std::cout<<"genre id problem"<<std::endl;
+            }
         }
 
         //Add book frame
@@ -72,7 +79,6 @@ void UserIO::run() {
                 std::string bookname=withoutAdd.substr(withoutAdd.find(' ')+1);
 
                 library.addBook(genre,bookname,userName_);
-
 
                 //Framing Send Frame
                 std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" has added the book "+bookname+"\n\0";
@@ -141,11 +147,14 @@ void UserIO::run() {
 
         else if(line.find("logout")!=std::string::npos)
         {
+            library.addReceipt(counterIDReceipt,"DISCONNECT");
                 //Framing Disconnect frame
-                std::string frame="DISCONNECT\nreceipt:42\n\n\0";
+                std::string frame="DISCONNECT\nreceipt:"+std::to_string(counterIDReceipt)+"\n\n\0";
                 //Sending frame
             connectionHandler.sendFrameAscii(frame,'\0');
 //            disconnected_=true;
+//            counterIDReceipt++;
+            break;
         } else if(!line.empty())
         {
             std::cout<<"Command is Corrupted or not supported."<<std::endl;

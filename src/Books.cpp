@@ -7,7 +7,8 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-Books::Books(mutex &mutex): mapLibrary_(), _mutex(mutex),wishToBorrow_() {
+Books::Books(std::mutex &mutex,std::mutex &mutex_Receipt,std::mutex &mutex_subId):
+mapLibrary_(),mapReceipt(),subscriptionIDMap(), _mutex(mutex),_mutex_Receipt(mutex_Receipt),wishToBorrow_(),_mutex_subId(mutex_subId) {
 }
 
 Books::~Books() {
@@ -80,6 +81,59 @@ std::string Books::bookStatus(const std::string& genre) {
 }
     out=out.substr(0,out.length()-1);
     return out;
+}
+
+void Books::addReceipt(int id, std::string action) {
+    std::lock_guard<std::mutex> lock(_mutex_Receipt);
+    std::string idStr = std::to_string(id);
+    std::string numberOfZeros;
+    for (int i = 0; i < 5-idStr.length(); ++i) {
+        numberOfZeros+='0';
+    }
+    idStr=numberOfZeros+idStr;
+    mapReceipt[idStr]=std::move(action);
+
+
+}
+
+std::string Books::getReceipt(const std::string& id) {
+    std::lock_guard<std::mutex> lock(_mutex_Receipt);
+    if (!mapReceipt[id].empty()){
+        std::string out = mapReceipt[id];
+        mapReceipt.erase(id);
+        return out;
+    }
+    return "error receipt don't exist";
+}
+
+void Books::addId(const std::string& genre, int id) {
+    std::lock_guard<std::mutex> lock(_mutex_subId);
+    subscriptionIDMap[genre]=id;
+
+}
+
+void Books::addId(const std::string &genre, const std::string& id) {
+    int idInt = std::stoi(id);
+    addId(genre,idInt);
+}
+
+int Books::getId(const std::string& genre) {
+    std::lock_guard<std::mutex> lock(_mutex_subId);
+    if (subscriptionIDMap.find(genre)!=subscriptionIDMap.end()){
+        return subscriptionIDMap[genre];
+    } else{
+        return -1;
+    }
+}
+
+bool Books::removeId(const std::string& genre) {
+    std::lock_guard<std::mutex> lock(_mutex_subId);
+    if (subscriptionIDMap.find(genre)!=subscriptionIDMap.end()){
+        subscriptionIDMap.erase(genre);
+        return true;
+    } else{
+        return false;
+    }
 }
 
 

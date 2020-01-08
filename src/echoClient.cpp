@@ -15,7 +15,9 @@
 
 int main (int argc, char *argv[]) {
     std::mutex mutex;
-    Books books(mutex);
+    std::mutex mutex_Receipt;
+    std::mutex mutex_id;
+    Books books(mutex,mutex_Receipt,mutex_id);
 
     std::string str("HEllo");
 //    std::cout <<str.rfind('E') +1<< std::endl;
@@ -25,6 +27,11 @@ int main (int argc, char *argv[]) {
 
     ConnectionHandler *connectionHandler = nullptr;
     boost::atomic_bool *connected=new boost::atomic_bool(false);
+    boost::atomic_bool *test=new boost::atomic_bool(false);
+//    std::cout<<test->load()<<std::endl;
+//    test->store(true);
+//    std::cout<<test->load()<<std::endl;
+
 
 
     std::string username;

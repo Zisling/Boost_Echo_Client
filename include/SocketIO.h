@@ -9,6 +9,7 @@
 #include <string>
 #include "connectionHandler.h"
 #include <boost/atomic.hpp>
+#include <thread>
 
 
 class SocketIO {
