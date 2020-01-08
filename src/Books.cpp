@@ -24,7 +24,11 @@ void Books::addBook(const std::string& genre, const std::string& book,const std:
     if (mapLibrary_[genre] == nullptr){
         mapLibrary_[genre]= new vector<string>();;
     }
+    if (mapBookLender_.find(book)!=mapBookLender_.end()){
     mapBookLender_[book]=owner;
+    }else if (mapBookLender_[book]!=owner){
+        mapBookLender_[book]=owner;
+    }
     mapLibrary_[genre]->emplace_back(book);
 }
 
@@ -67,6 +71,15 @@ const string &Books::getWishToBorrow() const {
 void Books::setWishToBorrow(const string &wishToBorrow) {
     std::lock_guard<std::mutex> lock(_mutex);
     wishToBorrow_ = wishToBorrow;
+}
+
+std::string Books::bookStatus(const std::string& genre) {
+    std::string out;
+    for ( const string &book :*mapLibrary_[genre] ) {
+        out+=book+',';
+}
+    out=out.substr(0,out.length()-1);
+    return out;
 }
 
 

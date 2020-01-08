@@ -39,7 +39,6 @@ void UserIO::run() {
             subscriptionIDMap[genre]=counterIDsub;
             counterIDsub++;
 
-            std::cout<<frame<<std::endl;
 
             //Sending frame
             connectionHandler.sendFrameAscii(frame,'\0');
@@ -50,12 +49,10 @@ void UserIO::run() {
         {
             //Extracting genre from the given string.
             std::string genre=line.substr(4);
-            std::cout<<genre<<std::endl;
 
 
             //Framing unsubscribe frame
             std::string frame="UNSUBSCRIBE\nid:"+std::to_string(subscriptionIDMap[genre])+"\n\n\0";
-
             std::cout<<frame<<std::endl;
 
             //Sending frame
@@ -76,12 +73,9 @@ void UserIO::run() {
 
                 library.addBook(genre,bookname,userName_);
 
-                std::cout<<genre<<std::endl;
-                std::cout<<bookname<<std::endl;
 
                 //Framing Send Frame
                 std::string frame="SEND\ndestination:"+genre+"\n\n"+userName_+" has added the book "+bookname+"\n\0";
-                std::cout <<frame << std::endl;
 
                 //Sending frame
                 connectionHandler.sendFrameAscii(frame,'\0');
@@ -134,9 +128,8 @@ void UserIO::run() {
         else if(line.find("status")!=std::string::npos)
         {
             std::string withoutStatus=line.substr(7);
-            if (withoutStatus.find(' ', 0) != std::string::npos) {
 
-                std::string genre = withoutStatus.substr(0, withoutStatus.find(' ', 0));
+                std::string genre = withoutStatus;
 
                 //Framing Send Frame
                 std::string frame="SEND\ndestination:"+genre+"\n\nbook status"+"\n\0";
@@ -144,9 +137,6 @@ void UserIO::run() {
                 //Sending frame
                 connectionHandler.sendFrameAscii(frame,'\0');
 
-        } else{
-                std::cout << "Status didn't succeed,Command is corrupted." << std::endl;\
-            }
         }
 
         else if(line.find("logout")!=std::string::npos)

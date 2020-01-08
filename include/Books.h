@@ -26,6 +26,8 @@ public:
 
     const std::string &getWishToBorrow() const;
 
+    std::string bookStatus(const std::string& genre);
+
     void setWishToBorrow(const std::string &wishToBorrow);
 
     virtual ~Books();
