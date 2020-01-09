@@ -19,11 +19,21 @@ private:
     std::string userName_;
     ConnectionHandler& connectionHandler;
     boost::atomic_bool *connected_;
+
+
+    int exit(const std::string &line, int counterIDReceipt);
+    void join(const std::string &line, int counterIDReceipt, int counterIDsub);
+    void addbook(const std::string& line);
+    void borrowbook(std::string line);
+    void status(const std::string& line);
+    void returnbook(const std::string& line);
+    void logout(const std::string& line,int);
+
 public:
     void run();
 
-    UserIO(Books &library, std::string userName, ConnectionHandler &connectionHandler,
-           boost::atomic_bool *connected);
+    UserIO(Books &library, std::string userName, ConnectionHandler &connectionHandler,boost::atomic_bool *connected);
+
 
 
 

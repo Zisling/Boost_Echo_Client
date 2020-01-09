@@ -5,16 +5,16 @@
 #include <include/Books.h>
 #include <include/UserIO.h>
 #include <boost/thread.hpp>
+#include <utility>
 #include <include/SocketIO.h>
 
-SocketIO::SocketIO(const std::string &userName, ConnectionHandler &connectionHandler, Books &library,
-                   boost::atomic_bool *connected) : userName_(userName), connectionHandler(connectionHandler),
-                                                    library(library), connected_(connected) {}
+SocketIO::SocketIO(std::string userName, ConnectionHandler &connectionHandler, Books &library,boost::atomic_bool *connected)
+: userName_(std::move(userName)), connectionHandler(connectionHandler),library(library), connected_(connected) {}
 
 
 void SocketIO::run() {
     std::string answer;
-    while (*connected_){
+    while (!(boost::this_thread::interruption_requested())&&connected_->load()){
         answer.clear();
         if (!connectionHandler.getFrameAscii(answer,'\0')) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
@@ -42,7 +42,7 @@ void SocketIO::run() {
                 std::string genre=action.substr(pos1,end-pos1);
                 int pos2=action.find_last_of(':')+1;
                 std::string idOfGen =action.substr(pos2);
-                std::cout<<idOfGen<<"!!!id of gen"<<std::endl;
+//                std::cout<<idOfGen<<"!!!id of gen"<<std::endl;
                 library.addId(genre,idOfGen);
                 std::cout<<action.substr(0,action.find('\n'))<<std::endl;
             } else if (action.find("Exited club ")!=std::string::npos){
@@ -57,6 +57,9 @@ void SocketIO::run() {
         }else if (answer.find("ERROR")!=std::string::npos){
             connected_->store(false);
             std::cout<<answer<<std::endl;
+            boost::this_thread::interruption_point();
+            std::cout<<"Disconnected due to Error try relogging"<<std::endl;
+            std::cin.clear();
         }
 
     }

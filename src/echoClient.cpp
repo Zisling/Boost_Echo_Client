@@ -5,6 +5,7 @@
 #include <include/SocketIO.h>
 #include <thread>
 #include <boost/atomic.hpp>
+#include <boost/thread.hpp>
 
 
 
@@ -19,18 +20,10 @@ int main (int argc, char *argv[]) {
     std::mutex mutex_id;
     Books books(mutex,mutex_Receipt,mutex_id);
 
-    std::string str("HEllo");
-//    std::cout <<str.rfind('E') +1<< std::endl;
-//    std::cout<<str.at(str.rfind('E') +1)<<std::endl;
-//
-//    std::cout<<(str.find("join",0)==std::string::npos)<<std::endl;
 
     ConnectionHandler *connectionHandler = nullptr;
     boost::atomic_bool *connected=new boost::atomic_bool(false);
     boost::atomic_bool *test=new boost::atomic_bool(false);
-//    std::cout<<test->load()<<std::endl;
-//    test->store(true);
-//    std::cout<<test->load()<<std::endl;
 
 
 
@@ -39,18 +32,20 @@ int main (int argc, char *argv[]) {
     std::string HostnPort;
 
     while (!connected->load()){
-
+        //User input from keyboard
         std::cin>>HostnPort;
         std::cin>>username;
         std::cin>>password;
 
-
+        //Host
     std::string host = HostnPort.substr(0,HostnPort.find(':'));
+        //Port
     std::string portStr= HostnPort.substr(HostnPort.find(':')+1);
-
     short port = atoi(portStr.c_str());
 
+
     connectionHandler= new ConnectionHandler(host, port);
+
 
         if (!connectionHandler->connect()) {
             std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
@@ -71,10 +66,13 @@ int main (int argc, char *argv[]) {
                     std::cout<<"Connected and running"<<std::endl;
                     UserIO userIo(books,username,*connectionHandler,connected);
                     SocketIO socketIo(username,*connectionHandler,books,connected);
-                    std::thread userIoThread(&UserIO::run, &userIo);
-                    std::thread socketIoThread(&SocketIO::run, &socketIo);
-                    userIoThread.join();
+//                    boost::thread userIoThread(&SocketIO::run, &socketIo);
+//                    socketIo.run();
+//                    userIoThread.join();
+                    boost::thread socketIoThread(&SocketIO::run, &socketIo);
+                    userIo.run();
                     socketIoThread.join();
+
 
                 } else{
                     std::cout<<"version not compatible"<<std::endl;
@@ -92,37 +90,5 @@ int main (int argc, char *argv[]) {
     delete connectionHandler;
 
 
-
-	//From here we will see the rest of the ehco client implementation:
-//    while (1) {
-//        const short bufsize = 1024;
-//        char buf[bufsize];
-//        std::cin.getline(buf, bufsize);
-//		std::string line(buf);
-//		int len=line.length();
-//        if (!connectionHandler->sendLine(line)) {
-//            std::cout << "Disconnected. Exiting...\n" << std::endl;
-//            break;
-//        }
-		// connectionHandler.sendLine(line) appends '\n' to the message. Therefor we send len+1 bytes.
-//        std::cout << "Sent " << len+1 << " bytes to server" << std::endl;
-
-
-        // We can use one of three options to read data from the server:
-        // 1. Read a fixed number of characters
-        // 2. Read a line (up to the newline character using the getline() buffered reader
-        // 3. Read up to the null character
-
-
-		/*len=answer.length();
-		// A C string must end with a 0 char delimiter.  When we filled the answer buffer from the socket
-		// we filled up to the \n char - we must make sure now that a 0 char is also present. So we truncate last character.
-        answer.resize(len-1);
-        std::cout << "Reply: " << answer << " " << len << " bytes " << std::endl << std::endl;
-        if (answer == "bye") {
-            std::cout << "Exiting...\n" << std::endl;
-            break;
-        }*/
-//    }
     return 0;
 }

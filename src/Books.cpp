@@ -8,12 +8,12 @@
 #include <vector>
 using namespace std;
 Books::Books(std::mutex &mutex,std::mutex &mutex_Receipt,std::mutex &mutex_subId):
-mapLibrary_(),mapReceipt(),subscriptionIDMap(), _mutex(mutex),_mutex_Receipt(mutex_Receipt),wishToBorrow_(),_mutex_subId(mutex_subId) {
-}
+mapLibrary_(),mapReceipt(),subscriptionIDMap(), _mutex(mutex),_mutex_Receipt(mutex_Receipt),wishToBorrow_(),_mutex_subId(mutex_subId) {}
 
 Books::~Books() {
-    for (auto& a : mapLibrary_) {
-        delete a.second;
+    for (auto& Topic_BookVec : mapLibrary_) {
+        //deleting the vectors
+        delete Topic_BookVec.second;
 }
 }
 
