@@ -62,7 +62,7 @@ void UserIO::run(std::string &line) {
             UserIO::returnbook(line);
         }
         //Status frame
-        else if(line.find("status")!=std::string::npos)
+        else if(line.find("status")!=std::string::npos&&line.substr(0,6)=="status")
         {
             UserIO::status(line);
         }
