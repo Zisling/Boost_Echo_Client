@@ -18,7 +18,7 @@ UserIO::UserIO(Books &library, std::string userName,
 
 
 //
-void UserIO::run() {
+void UserIO::run(std::string &line) {
 
     int counterIDsub=0;
     int counterIDReceipt=1;
@@ -27,7 +27,8 @@ void UserIO::run() {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
-        std::string line(buf);
+        std::string line2(buf);
+        line=std::move(line2);
 
         if (!connected_->load()){
             break;
@@ -79,7 +80,8 @@ void UserIO::run() {
 
         }
 
-
+        std::cin.clear();
+        fflush(stdin);
     }
 }
 

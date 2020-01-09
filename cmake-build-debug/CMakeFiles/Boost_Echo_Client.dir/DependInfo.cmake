@@ -4,13 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/Books.cpp" "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o"
-  "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/SocketIO.cpp" "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o"
-  "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/UserIO.cpp" "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o"
-  "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/connectionHandler.cpp" "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o"
-  "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/src/echoClient.cpp" "/users/studs/bsc/2020/hediz/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"
+  "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/Books.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/Books.cpp.o"
+  "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/SocketIO.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/SocketIO.cpp.o"
+  "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/UserIO.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/UserIO.cpp.o"
+  "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/connectionHandler.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o"
+  "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/src/echoClient.cpp" "/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "BOOST_ALL_NO_LIB"
+  "BOOST_THREAD_DYN_LINK"
+  )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

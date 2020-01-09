@@ -20,7 +20,6 @@ int main (int argc, char *argv[]) {
     std::mutex mutex_id;
     Books books(mutex,mutex_Receipt,mutex_id);
 
-
     ConnectionHandler *connectionHandler = nullptr;
     boost::atomic_bool *connected=new boost::atomic_bool(false);
     boost::atomic_bool *test=new boost::atomic_bool(false);
@@ -31,11 +30,30 @@ int main (int argc, char *argv[]) {
     std::string password;
     std::string HostnPort;
 
+    const short bufsize = 1024;
+    char buf[bufsize];
+    std::string line;
     while (!connected->load()){
+        if (line.empty()){
+            do {
+                std::cout<< "enter login host:port userName password"<<std::endl;
+                std::cin.getline(buf, bufsize);
+                std::string line2(buf);
+                line = std::move(line2);
+
+            }while (line.substr(0, 5) != "login");
+        }
+
         //User input from keyboard
-        std::cin>>HostnPort;
-        std::cin>>username;
-        std::cin>>password;
+        int pos = line.find(' ',6);
+        HostnPort = line.substr(6,pos-6);
+        int pos2 = line.find(' ',pos+1 );
+        username = line.substr(pos+1,pos2-pos-1);
+        password = line.substr(pos2+1);
+        std::cout <<HostnPort << std::endl;
+        std::cout <<username << std::endl;
+        std::cout <<password << std::endl;
+
 
         //Host
     std::string host = HostnPort.substr(0,HostnPort.find(':'));
@@ -48,6 +66,7 @@ int main (int argc, char *argv[]) {
 
 
         if (!connectionHandler->connect()) {
+            line.clear();
             std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         } else{ *connected=true;
         std::string connectedFrame="CONNECT\naccept-version:1.2\nhost:"+HostnPort+"\nlogin:"+username+"\npasscode:"+password+"\n\n\0";
@@ -70,7 +89,7 @@ int main (int argc, char *argv[]) {
 //                    socketIo.run();
 //                    userIoThread.join();
                     boost::thread socketIoThread(&SocketIO::run, &socketIo);
-                    userIo.run();
+                    userIo.run(line);
                     socketIoThread.join();
 
 

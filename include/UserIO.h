@@ -30,7 +30,7 @@ private:
     void logout(const std::string& line,int);
 
 public:
-    void run();
+    void run(std::string &line);
 
     UserIO(Books &library, std::string userName, ConnectionHandler &connectionHandler,boost::atomic_bool *connected);
 
