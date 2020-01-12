@@ -35,19 +35,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/zisling/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.5662.56/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/nir/Clion/clion-2019.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/zisling/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.5662.56/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/nir/Clion/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zisling/CLionProjects/ass3/Boost_Echo_Client
+CMAKE_SOURCE_DIR = /home/nir/CLionProjects/Boost_Echo_Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug
+CMAKE_BINARY_DIR = /home/nir/CLionProjects/Boost_Echo_Client/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/Boost_Echo_Client.dir/all:
 	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/depend
 	$(MAKE) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Boost_Echo_Client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nir/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Boost_Echo_Client"
 .PHONY : CMakeFiles/Boost_Echo_Client.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Boost_Echo_Client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nir/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Boost_Echo_Client.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zisling/CLionProjects/ass3/Boost_Echo_Client/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nir/CLionProjects/Boost_Echo_Client/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Boost_Echo_Client.dir/rule
 
 # Convenience name for target.

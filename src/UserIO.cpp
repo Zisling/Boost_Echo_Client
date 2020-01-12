@@ -5,25 +5,23 @@
 #include <boost/thread/thread.hpp>
 
 
-/**
- * UserIO's constructor
- * @param library - reference of a libary of books.
- * @param userName -
- * @param connectionHandler
- * @param connected
- */
 UserIO::UserIO(Books &library, std::string userName,
                ConnectionHandler &connectionHandler, boost::atomic_bool *connected) :
                library(library),userName_(std::move(userName)),connectionHandler(connectionHandler),connected_(connected) {}
 
 
-//
+/**
+ * Run method of userIO
+ * @param line-shared object between both threads.
+ */
+
 void UserIO::run(std::string &line) {
 
     int counterIDsub=0;
     int counterIDReceipt=1;
 
-    while (connected_->load()) {
+    while (connected_->load())
+    {
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
@@ -34,42 +32,43 @@ void UserIO::run(std::string &line) {
             break;
         }
         //Join frame
-        if (line.find("join", 0)!=std::string::npos)
+        if (line.length()>4&&line.substr(0,4)=="join")
         {
             UserIO::join(line,counterIDReceipt,counterIDsub);
             counterIDsub++;
             counterIDReceipt++;
         }
         //Exit frame
-        else if(line.find("exit",0)!=std::string::npos)
+        else if(line.length()>4&&line.substr(0,4)=="exit")
         {
             counterIDReceipt=UserIO::exit(line,counterIDReceipt);
         }
 
         //Add book frame
-        else if(line.find("add",0)!=std::string::npos)
+        else if(line.length()>3&&line.substr(0,3)=="add")
         {
             UserIO::addbook(line);
         }
 
         //Borrow frame
-        else if(line.find("borrow",0)!=std::string::npos)
+        else if(line.length()>6&&line.substr(0,6)=="borrow")
         {
             UserIO::borrowbook(line);
         }
         //Return book frame
-        else if(line.find("return")!=std::string::npos) {
+        else if(line.length()>6&&line.substr(0,6)=="return") {
             UserIO::returnbook(line);
         }
         //Status frame
-        else if(line.find("status")!=std::string::npos&&line.substr(0,6)=="status")
+        else if(line.length()>6&&line.substr(0,6)=="status")
         {
             UserIO::status(line);
         }
         //Logout frame (Disconnect)
-        else if(line.find("logout")!=std::string::npos)
+        else if(line=="logout")
         {
             UserIO::logout(line,counterIDReceipt);
+            line.clear();
             break;
         }
         //Empty line reply
@@ -106,8 +105,8 @@ int UserIO::exit(const std::string& line, int counterIDReceipt) {
 
     //Framing unsubscribe frame
     library.addReceipt(counterIDReceipt,"Exited club "+genre);
-    std::cout<<genre<<std::endl;
     int id =library.getId(genre);
+    //if indeed subscribed to topic id is not equal to -1
     if (id!=-1){
         std::string frame="UNSUBSCRIBE\nid:"+std::to_string(id)+"\nreceipt:"+std::to_string(counterIDReceipt)+"\n\n\0";
         std::cout<<frame<<std::endl;
@@ -116,7 +115,7 @@ int UserIO::exit(const std::string& line, int counterIDReceipt) {
         //Sending frame
         connectionHandler.sendFrameAscii(frame,'\0');
     } else{
-        std::cout<<"Error:Genre ID corruption."<<std::endl;
+        std::cout<<"Error:Not Subscribed to this genre."<<std::endl;
     }
     return counterIDReceipt;
 }
@@ -206,6 +205,7 @@ void UserIO::logout(const std::string& line, int counterIDReceipt) {
     std::string frame="DISCONNECT\nreceipt:"+std::to_string(counterIDReceipt)+"\n\n\0";
     //Sending frame
     connectionHandler.sendFrameAscii(frame,'\0');
+
 }
 
 

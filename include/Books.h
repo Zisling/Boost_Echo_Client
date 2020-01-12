@@ -20,6 +20,7 @@ private:
     std::mutex & _mutex;
     std::mutex & _mutex_Receipt;
     std::mutex & _mutex_subId;
+
 public:
     Books(std::mutex &mutex,std::mutex &mutex_Receipt,std::mutex &mutex_subId);
 

@@ -48,6 +48,8 @@ bool ConnectionHandler::getBytes(char bytes[], unsigned int bytesToRead) {
 }
 
 bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
+    std::lock_guard<std::mutex> lock(mutex);
+
     int tmp = 0;
 	boost::system::error_code error;
     try {
@@ -68,6 +70,7 @@ bool ConnectionHandler::getLine(std::string& line) {
 }
 
 bool ConnectionHandler::sendLine(std::string& line) {
+    std::lock_guard<std::mutex> lock(mutex);
     return sendFrameAscii(line, '\n');
 }
  

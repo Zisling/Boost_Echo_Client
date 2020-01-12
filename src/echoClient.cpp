@@ -15,14 +15,16 @@
 
 
 int main (int argc, char *argv[]) {
+
+    //defining mutexes for books
     std::mutex mutex;
     std::mutex mutex_Receipt;
     std::mutex mutex_id;
     Books books(mutex,mutex_Receipt,mutex_id);
 
     ConnectionHandler *connectionHandler = nullptr;
+
     boost::atomic_bool *connected=new boost::atomic_bool(false);
-    boost::atomic_bool *test=new boost::atomic_bool(false);
 
 
 
@@ -30,29 +32,36 @@ int main (int argc, char *argv[]) {
     std::string password;
     std::string HostnPort;
 
+
     const short bufsize = 1024;
     char buf[bufsize];
     std::string line;
-    while (!connected->load()){
+
+
+    while (!connected->load())
+    {
+
+        //login input
         if (line.empty()){
-            do {
-                std::cout<< "enter login host:port userName password"<<std::endl;
+            do
+                {
+                std::cout<< "Enter command: login host:port user-name password"<<std::endl;
                 std::cin.getline(buf, bufsize);
                 std::string line2(buf);
                 line = std::move(line2);
 
-            }while (line.substr(0, 5) != "login");
+            }
+            while (line.substr(0, 5) != "login");
         }
 
-        //User input from keyboard
+
         int pos = line.find(' ',6);
         HostnPort = line.substr(6,pos-6);
+
         int pos2 = line.find(' ',pos+1 );
         username = line.substr(pos+1,pos2-pos-1);
         password = line.substr(pos2+1);
-        std::cout <<HostnPort << std::endl;
-        std::cout <<username << std::endl;
-        std::cout <<password << std::endl;
+
 
 
         //Host
@@ -68,39 +77,56 @@ int main (int argc, char *argv[]) {
         if (!connectionHandler->connect()) {
             line.clear();
             std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
-        } else{ *connected=true;
+        }
+
+        else{
+
+            *connected=true;
         std::string connectedFrame="CONNECT\naccept-version:1.2\nhost:"+HostnPort+"\nlogin:"+username+"\npasscode:"+password+"\n\n\0";
         std::cout<<connectedFrame<<std::endl;
         connectionHandler->sendFrameAscii(connectedFrame,'\0');
             std::string answer;
             // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
             // We could also use: connectionHandler.getline(answer) and then get the answer without the newline char at the end
-            if (!connectionHandler->getFrameAscii(answer,'\0')) {
+            if (!connectionHandler->getFrameAscii(answer,'\0'))
+            {
                 std::cout << "Disconnected. Exiting...\n" << std::endl;
                 break;
             }
+
             answer.resize(answer.length()-1);
-            if (answer.find("CONNECTED")!=std::string::npos){
-                if (answer.find("version:1.2")){
+            if (answer.find("CONNECTED")!=std::string::npos)
+            {
+                if (answer.find("version:1.2"))
+                {
                     std::cout<<"Connected and running"<<std::endl;
+
                     UserIO userIo(books,username,*connectionHandler,connected);
                     SocketIO socketIo(username,*connectionHandler,books,connected);
-//                    boost::thread userIoThread(&SocketIO::run, &socketIo);
-//                    socketIo.run();
-//                    userIoThread.join();
+
+                    //socketIOThread runs on a different thread
                     boost::thread socketIoThread(&SocketIO::run, &socketIo);
+                    //UserIO runs on main thread
                     userIo.run(line);
+
                     socketIoThread.join();
 
-
-                } else{
-                    std::cout<<"version not compatible"<<std::endl;
                 }
 
-            } else if(answer.find("ERROR")){
+                else{
+
+                    std::cout<<"version not compatible"<<std::endl;
+                    }
+
+            }
+
+            else if(answer.find("ERROR"))
+            {
                 std::cout<<answer<<std::endl;
             }
-            else{
+
+            else
+                {
                 std::cout<<"didn't get CONNECTED in frame"<<std::endl;
             }
         }
