@@ -1,8 +1,8 @@
-#include <stdlib.h>
-#include <connectionHandler.h>
-#include <include/Books.h>
-#include <include/UserIO.h>
-#include <include/SocketIO.h>
+#include <cstdlib>
+#include <../include/connectionHandler.h>
+#include <../include/Books.h>
+#include <../include/UserIO.h>
+#include <../include/SocketIO.h>
 #include <thread>
 #include <boost/atomic.hpp>
 #include <boost/thread.hpp>
@@ -41,6 +41,7 @@ int main (int argc, char *argv[]) {
     while (!connected->load())
     {
 
+
         //login input
         if (line.empty()){
             do
@@ -50,9 +51,15 @@ int main (int argc, char *argv[]) {
                 std::string line2(buf);
                 line = std::move(line2);
 
-            }
-            while (line.substr(0, 5) != "login");
+                }
+            while (line.substr(0, 5) != "login"&&line.substr(0,3)!="bye");
         }
+
+        if(line.substr(0,3)=="bye")
+        {
+            break;
+        }
+
 
 
         int pos = line.find(' ',6);
@@ -105,11 +112,12 @@ int main (int argc, char *argv[]) {
                     SocketIO socketIo(username,*connectionHandler,books,connected);
 
                     //socketIOThread runs on a different thread
-                    boost::thread socketIoThread(&SocketIO::run, &socketIo);
+                    std::thread socketIoThread(&SocketIO::run, &socketIo);
                     //UserIO runs on main thread
                     userIo.run(line);
 
                     socketIoThread.join();
+
 
                 }
 
@@ -133,6 +141,7 @@ int main (int argc, char *argv[]) {
     }
 
     delete connectionHandler;
+    delete connected;
 
 
     return 0;

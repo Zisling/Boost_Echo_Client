@@ -1,13 +1,17 @@
 //
 
-#include "include/UserIO.h"
+#include "../include/UserIO.h"
+
 #include <utility>
+
 #include <boost/thread/thread.hpp>
-
-
 UserIO::UserIO(Books &library, std::string userName,
                ConnectionHandler &connectionHandler, boost::atomic_bool *connected) :
                library(library),userName_(std::move(userName)),connectionHandler(connectionHandler),connected_(connected) {}
+
+
+UserIO::UserIO(const UserIO &otherUserIO):
+library(otherUserIO.library),userName_(),connectionHandler(otherUserIO.connectionHandler),connected_(otherUserIO.connected_){}
 
 
 /**

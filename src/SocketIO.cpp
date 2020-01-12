@@ -1,12 +1,10 @@
-//
-// Created by nirohan@wincs.cs.bgu.ac.il on 05/01/2020.
-//
 
-#include <include/Books.h>
-#include <include/UserIO.h>
+
+#include <../include/Books.h>
+#include <../include/UserIO.h>
 #include <boost/thread.hpp>
 #include <utility>
-#include <include/SocketIO.h>
+#include <../include/SocketIO.h>
 
 SocketIO::SocketIO(std::string userName, ConnectionHandler &connectionHandler, Books &library,boost::atomic_bool *connected)
 : userName_(std::move(userName)), connectionHandler(connectionHandler),library(library), connected_(connected) {}
@@ -16,7 +14,7 @@ void SocketIO::run() {
 
     std::string answer;//server's answer
 
-    while (!(boost::this_thread::interruption_requested())&&connected_->load())
+    while (connected_->load())
     {
 
         answer.clear();
@@ -81,7 +79,6 @@ void SocketIO::run() {
         {
             connected_->store(false);
             std::cout<<answer<<std::endl;
-            boost::this_thread::interruption_point();
             std::cout<<"Disconnected due to Error try relogging"<<std::endl;
             std::cin.clear();
         }

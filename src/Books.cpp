@@ -1,14 +1,23 @@
 //
-// Created by zisling on 04/01/2020.
-//
 
-#include "include/Books.h"
+#include "../include/Books.h"
 #include <utility>
 #include <iostream>
 #include <vector>
 using namespace std;
+
+
 Books::Books(std::mutex &mutex,std::mutex &mutex_Receipt,std::mutex &mutex_subId):
-mapLibrary_(),mapReceipt(),subscriptionIDMap(), _mutex(mutex),_mutex_Receipt(mutex_Receipt),wishToBorrow_(),_mutex_subId(mutex_subId) {}
+        wishToBorrow_(),mapLibrary_(),mapBookLender_(),mapReceipt(),subscriptionIDMap(), _mutex(mutex),_mutex_Receipt(mutex_Receipt),_mutex_subId(mutex_subId) {}
+
+
+Books::Books(const Books &otherBooks):
+        wishToBorrow_(otherBooks.wishToBorrow_),mapLibrary_(otherBooks.mapLibrary_),mapBookLender_(otherBooks.mapBookLender_),mapReceipt(otherBooks.mapReceipt),subscriptionIDMap(otherBooks.subscriptionIDMap),
+        _mutex(otherBooks._mutex),_mutex_Receipt(otherBooks._mutex_Receipt),_mutex_subId(otherBooks._mutex_subId){
+
+
+}
+
 
 Books::~Books() {
     for (auto& Topic_BookVec : mapLibrary_)
@@ -17,7 +26,6 @@ Books::~Books() {
         delete Topic_BookVec.second;
     }
 }
-
 
 void Books::addBook(const std::string& genre, const std::string& book,const std::string& owner) {
     std::lock_guard<std::mutex> lock(_mutex);
@@ -106,7 +114,7 @@ void Books::addReceipt(int id, std::string action)
     std::string idStr = std::to_string(id);
     std::string numberOfZeros;
 
-    for (int i = 0; i < 5-idStr.length(); ++i)
+    for (unsigned int i = 0; i < 5-idStr.length(); ++i)
     {
         numberOfZeros+='0';
     }
@@ -115,6 +123,7 @@ void Books::addReceipt(int id, std::string action)
     mapReceipt[idStr]=std::move(action);
 
 }
+
 
 std::string Books::getReceipt(const std::string& id)
 {
@@ -128,7 +137,6 @@ std::string Books::getReceipt(const std::string& id)
 
     return "error receipt don't exist";
 }
-
 
 void Books::addId(const std::string& genre, int id)
 {
@@ -170,6 +178,5 @@ bool Books::removeId(const std::string& genre)
         return false;
     }
 }
-
 
 

@@ -1,6 +1,3 @@
-//
-// Created by zisling on 04/01/2020.
-//
 
 #ifndef BOOST_ECHO_CLIENT_BOOKS_H
 #define BOOST_ECHO_CLIENT_BOOKS_H
@@ -22,10 +19,15 @@ private:
     std::mutex & _mutex_subId;
 
 public:
+    //Constructor
     Books(std::mutex &mutex,std::mutex &mutex_Receipt,std::mutex &mutex_subId);
+    //Copy Constructor
+    Books(const Books&);
 
     void addReceipt(int id,std::string action);
     std::string getReceipt(const std::string& id);
+
+
 
 
 
