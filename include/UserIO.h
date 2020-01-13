@@ -32,6 +32,7 @@ public:
 
     UserIO(Books &library, std::string userName, ConnectionHandler &connectionHandler,boost::atomic_bool *connected);
     UserIO(const UserIO&);
+    UserIO&operator=(const UserIO&);
 
 
 

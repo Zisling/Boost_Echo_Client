@@ -23,6 +23,7 @@ public:
     Books(std::mutex &mutex,std::mutex &mutex_Receipt,std::mutex &mutex_subId);
     //Copy Constructor
     Books(const Books&);
+    Books&operator=(const Books&);
 
     void addReceipt(int id,std::string action);
     std::string getReceipt(const std::string& id);

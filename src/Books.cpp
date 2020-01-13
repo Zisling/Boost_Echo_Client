@@ -19,6 +19,15 @@ Books::Books(const Books &otherBooks):
 }
 
 
+Books &Books::operator=(const Books & other) {
+    wishToBorrow_=other.wishToBorrow_;
+    mapLibrary_=other.mapLibrary_;
+    mapBookLender_=other.mapBookLender_;
+    mapReceipt=other.mapReceipt;
+    subscriptionIDMap=other.subscriptionIDMap;
+    return *this;
+}
+
 Books::~Books() {
     for (auto& Topic_BookVec : mapLibrary_)
     {
@@ -108,6 +117,7 @@ std::string Books::bookStatus(const std::string& genre) {
     return out;
 }
 
+
 void Books::addReceipt(int id, std::string action)
 {
     std::lock_guard<std::mutex> lock(_mutex_Receipt);
@@ -123,7 +133,6 @@ void Books::addReceipt(int id, std::string action)
     mapReceipt[idStr]=std::move(action);
 
 }
-
 
 std::string Books::getReceipt(const std::string& id)
 {

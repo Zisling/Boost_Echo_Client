@@ -16,8 +16,9 @@ SocketIO::SocketIO(const SocketIO & otherSocketIO)
 
 SocketIO &SocketIO::operator=(const SocketIO & otherSocketIO) {
     userName_= otherSocketIO.userName_;
-
-    return <#initializer#>;
+    library=otherSocketIO.library;
+    connected_=otherSocketIO.connected_;
+    return *this;
 }
 
 void SocketIO::run() {

@@ -11,7 +11,16 @@ UserIO::UserIO(Books &library, std::string userName,
 
 
 UserIO::UserIO(const UserIO &otherUserIO):
-library(otherUserIO.library),userName_(),connectionHandler(otherUserIO.connectionHandler),connected_(otherUserIO.connected_){}
+library(otherUserIO.library),userName_(otherUserIO.userName_),connectionHandler(otherUserIO.connectionHandler),connected_(otherUserIO.connected_){}
+
+
+UserIO &UserIO::operator=(const UserIO & other) {
+    library=other.library;
+    userName_=other.userName_;
+    connected_=other.connected_;
+
+    return *this;
+}
 
 
 /**
@@ -87,7 +96,6 @@ void UserIO::run(std::string &line) {
         fflush(stdin);
     }
 }
-
 
 void UserIO::join(const std::string& line,int counterIDReceipt,int counterIDsub) {
 
