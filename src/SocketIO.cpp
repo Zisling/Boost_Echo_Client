@@ -7,8 +7,18 @@
 #include <../include/SocketIO.h>
 
 SocketIO::SocketIO(std::string userName, ConnectionHandler &connectionHandler, Books &library,boost::atomic_bool *connected)
-: userName_(std::move(userName)), connectionHandler(connectionHandler),library(library), connected_(connected) {}
+:userName_(std::move(userName)), connectionHandler(connectionHandler),library(library), connected_(connected) {}
 
+
+SocketIO::SocketIO(const SocketIO & otherSocketIO)
+:userName_(otherSocketIO.userName_),connectionHandler(otherSocketIO.connectionHandler),library(otherSocketIO.library),connected_(otherSocketIO.connected_) {
+}
+
+SocketIO &SocketIO::operator=(const SocketIO & otherSocketIO) {
+    userName_= otherSocketIO.userName_;
+
+    return <#initializer#>;
+}
 
 void SocketIO::run() {
 
@@ -149,4 +159,8 @@ void SocketIO::MessageProcess(const std::string& message) {
 
 
 
+}
+
+SocketIO::~SocketIO() {
+    connected_=nullptr;
 }

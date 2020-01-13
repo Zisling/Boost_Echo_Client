@@ -15,6 +15,13 @@ public:
     SocketIO(std::string userName, ConnectionHandler &connectionHandler, Books &library,
              boost::atomic_bool *connected);
 
+    SocketIO(const SocketIO&);
+
+    SocketIO&operator=(const SocketIO&);
+
+
+    virtual ~SocketIO();
+
     void run();
 
 private:
