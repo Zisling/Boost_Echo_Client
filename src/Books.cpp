@@ -107,13 +107,16 @@ void Books::setWishToBorrow(const string &wishToBorrow) {
 
 std::string Books::bookStatus(const std::string& genre) {
     std::string out;
-
+    if (mapLibrary_.find(genre)!=mapLibrary_.end()){
     for ( const string &book :*mapLibrary_[genre] )
     {
         out+=book+',';
     }
+        out=out.substr(0,out.length()-1);
+    } else{
+        out="";
+    }
 
-    out=out.substr(0,out.length()-1);
     return out;
 }
 

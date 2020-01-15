@@ -43,12 +43,12 @@ void SocketIO::run() {
 
         std::cout<<answer<<std::endl;
 
-        if (answer.find("MESSAGE")!=std::string::npos)
+        if (answer.length()>7&&answer.substr(0,7)=="MESSAGE")
         {
             MessageProcess(answer);
         }
 
-        else if(answer.find("RECEIPT")!=std::string::npos)
+        else if(answer.length()>7&&answer.substr(0,7)=="RECEIPT")
         {
             std::string res = "receipt-id:";
             int pos = answer.find(res);
@@ -112,7 +112,7 @@ void SocketIO::MessageProcess(const std::string& message) {
 
 
     //Wish to borrow Processessing
-    if (body.find("wish to borrow")!=std::string::npos)
+    if (body.find(" wish to borrow ")!=std::string::npos)
     {
         std::string userName = body.substr(0,body.find(' '));
         std::string bookToBorrow = body.substr(body.find("borrow")+7);
@@ -138,7 +138,7 @@ void SocketIO::MessageProcess(const std::string& message) {
     }
 
     //Taking Processessing
-    else if(body.find("Taking")!=std::string::npos && body.rfind(userName_)!=std::string::npos)
+    else if(body.length()>6&&body.substr(0,6)=="Taking"&& body.substr(body.rfind(' ')+1)==userName_)
     {
         std::string book=body.substr(7,body.find("from")-8);
         std::cout <<"removing: " << library.removeBook(destination,book)<< std::endl;
@@ -149,11 +149,10 @@ void SocketIO::MessageProcess(const std::string& message) {
     {
         std::string frame = "SEND\ndestination:" + destination + "\n\n" +userName_+':'+library.bookStatus(destination)+"\n\0";
         connectionHandler.sendFrameAscii(frame, '\0');
-
     }
 
     //Return Processessing
-    else if (body.find("Returning")!=std::string::npos&&body.find(userName_)!=std::string::npos){
+    else if (body.length()>9&&body.substr(0,9)=="Returning"&&body.substr(body.rfind(' ')+1,body.length()-body.rfind(' ')-1)!=userName_){
         std::string bookToAdd = body.substr(body.find(' ')+1,body.rfind("to")-body.find(' ')+1);
         library.addBook(destination,bookToAdd,library.findLender(bookToAdd));
     }
