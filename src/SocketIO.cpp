@@ -41,7 +41,6 @@ void SocketIO::run() {
         answer.resize(answer.length()-1);
 
 
-        std::cout<<answer<<std::endl;
 
         if (answer.length()>7&&answer.substr(0,7)=="MESSAGE")
         {
@@ -74,7 +73,7 @@ void SocketIO::run() {
             }
             else if (action.find("Exited club ")!=std::string::npos)
             {
-                int pos = action.find_last_of("club ")+5;
+                int pos = action.find("club ")+5;
                 std::string genre = action.substr(pos);
                 library.removeId(genre);
                 std::cout<<action<<std::endl;
@@ -109,7 +108,7 @@ void SocketIO::MessageProcess(const std::string& message) {
     std::string destination = message.substr(pos,message.find('\n',pos)-pos);
     std::string body = message.substr(message.rfind('\n',message.rfind('\n'))+1,message.rfind('\n'));
     std::string wishToBorrow = library.getWishToBorrow();
-
+    std::cout<<body<<std::endl;
 
     //Wish to borrow Processessing
     if (body.find(" wish to borrow ")!=std::string::npos)

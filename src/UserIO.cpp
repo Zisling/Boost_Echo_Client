@@ -55,6 +55,7 @@ void UserIO::run(std::string &line) {
         else if(line.length()>4&&line.substr(0,4)=="exit")
         {
             counterIDReceipt=UserIO::exit(line,counterIDReceipt);
+            counterIDReceipt++;
         }
 
         //Add book frame
@@ -121,8 +122,6 @@ int UserIO::exit(const std::string& line, int counterIDReceipt) {
     //if indeed subscribed to topic id is not equal to -1
     if (id!=-1){
         std::string frame="UNSUBSCRIBE\nid:"+std::to_string(id)+"\nreceipt:"+std::to_string(counterIDReceipt)+"\n\n\0";
-        std::cout<<frame<<std::endl;
-        counterIDReceipt++;
 
         //Sending frame
         connectionHandler.sendFrameAscii(frame,'\0');
