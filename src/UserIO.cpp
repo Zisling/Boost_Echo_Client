@@ -196,9 +196,8 @@ void UserIO::returnbook(const std::string &line) {
         std::string bookname = withoutReturn.substr(withoutReturn.find(' ', 0) + 1);
 
         std::string lender=library.findLender(bookname);
-
         //Framing Send Frame
-        std::string frame="SEND\ndestination:"+genre+"\nReturning "+bookname+" to"+lender+"\n\0";
+        std::string frame="SEND\ndestination:"+genre+"\n\nReturning "+bookname+" to "+lender+"\n\0";
         library.removeBook(genre,bookname);
         //Sending frame
         connectionHandler.sendFrameAscii(frame,'\0');

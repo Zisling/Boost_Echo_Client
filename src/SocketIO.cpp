@@ -151,8 +151,8 @@ void SocketIO::MessageProcess(const std::string& message) {
     }
 
     //Return Processessing
-    else if (body.length()>9&&body.substr(0,9)=="Returning"&&body.substr(body.rfind(' ')+1,body.length()-body.rfind(' ')-1)!=userName_){
-        std::string bookToAdd = body.substr(body.find(' ')+1,body.rfind("to")-body.find(' ')+1);
+    else if (body.length()>9&&body.substr(0,9)=="Returning"&&body.substr(body.rfind(' ')+1)==userName_){
+        std::string bookToAdd = body.substr(body.find(' ')+1,body.rfind("to")-body.find(' ')-2);
         library.addBook(destination,bookToAdd,library.findLender(bookToAdd));
     }
 

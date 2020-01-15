@@ -90,7 +90,6 @@ int main (int argc, char *argv[]) {
 
             *connected=true;
         std::string connectedFrame="CONNECT\naccept-version:1.2\nhost:"+HostnPort+"\nlogin:"+username+"\npasscode:"+password+"\n\n\0";
-        std::cout<<connectedFrame<<std::endl;
         connectionHandler->sendFrameAscii(connectedFrame,'\0');
             std::string answer;
             // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
